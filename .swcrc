@@ -1,0 +1,15 @@
+{
+  "$schema": "https://swc.rs/schema.json",
+  "jsc": {
+    "target": "es2022",
+    "loose": true,
+    "parser": {
+      "syntax": "ecmascript",
+      "dynamicImport": true
+    }
+  },
+  "module": {
+    "type": "commonjs",
+    "noInterop": false
+  }
+}
