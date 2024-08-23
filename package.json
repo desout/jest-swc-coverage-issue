@@ -1,0 +1,16 @@
+{
+  "name": "jest-swc",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@swc/core": "^1.7.14",
+    "@swc/jest": "^0.2.36",
+    "jest": "^29.7.0",
+    "lodash": "^4.17.21",
+    "util": "^0.12.5"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
