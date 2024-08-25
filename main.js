@@ -7,10 +7,6 @@ export function add(a,b) {
   return lodash.add(a,b); // this fails when "noInterop": true is specified in .swcrc
 }
 
-export function main() {
-  return 'main';
-}
-
 export function runDependency() {
   return dependency();
 }
