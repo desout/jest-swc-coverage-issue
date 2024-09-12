@@ -1,13 +1,15 @@
 import dependency from './dependency';
-import lodash from 'lodash';
 
-console.log(lodash); // => undefined when "noInterop": true is specified in .swcrc
-
-export function add(a,b) {
-  return lodash.add(a,b); // this fails when "noInterop": true is specified in .swcrc
+export function onTestEventCallback() {
+  console.log("onTestEventCallback");
 }
+export class TestClass {
+  constructor() {
+    dependency.on('test', onTestEventCallback)
+  }
 
-export function runDependency() {
-  return dependency();
+  triggerEvent() {
+    dependency.fire('test');
+  }
 }
 

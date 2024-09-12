@@ -1,4 +1,10 @@
-
-export default function dependency() {
-  return 'dependency';
+const Events = {
+  on: () => {
+    //SOME IMPLEMENTATION
+  },
+  fire: () => {
+    //SOME IMPLEMENTATION
+  }
 }
+
+export default Events;

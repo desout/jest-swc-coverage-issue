@@ -1,17 +1,34 @@
-import { runDependency, add } from './main'
-
+import {TestClass} from './main'
+import dependency from "./dependency";
+let eventMap = {};
 jest.mock('./dependency', () => {
   return {
-    default: () => { return 'dependency-mock'},
-    __esModule: true, // this is needed unless "noInterop": true is specified in .swcrc. but with that specified every other import from node_modules stops working so test('add()',...) will start failing
+    default: {
+      on: jest.fn((eventNames, handler) => {
+        eventNames.split(' ').forEach(eventName => {
+          eventMap[eventName] = handler;
+        });
+      }),
+      fire: jest.fn((eventName, data = {}, target = undefined) => {
+        if (eventMap[eventName]) {
+          eventMap[eventName]({
+            detail: {
+              ...data,
+              ts: data.ts || Date.now(),
+            },
+            target,
+          });
+        }
+      })
+    },
+    __esModule: true,
   };
 });
 
 test('runDependency()',() => {
-  expect(runDependency()).toBe('dependency-mock');
+  const testClass = new TestClass();
+
+  testClass.triggerEvent();
+
+  expect(dependency.fire).toHaveBeenCalledTimes(1)
 });
-
-test('add()', () => {
-  expect(add(1,2)).toBe(3);
-})
-
